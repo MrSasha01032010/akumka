@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Полина — прости меня</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #ffe6f0;
+      --bg2: #fff0f7;
+      --accent: #ff4d86;
+      --card: rgba(255,255,255,0.9);
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 8px 30px rgba(197, 42, 96, 0.12);
+      --text-dark: #2b1b2b;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;width:100%}
+    body{
+      font-family: Inter, system-ui, sans-serif;
+      background: radial-gradient(circle at 10% 10%, var(--bg2) 0%, var(--bg1) 40%, #fff 100%);
+      color:var(--text-dark);
+      overflow-x:hidden;
+    }
+    .hearts {
+      position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;
+    }
+    .hearts i{
+      position:absolute;display:block;transform:translate(-50%, -50%);
+    }
+    .hearts i::before{
+      content:'';display:block;width:var(--s);height:var(--s);
+      background-image:radial-gradient(circle at 30% 25%, rgba(255,255,255,0.4) 0 15%, transparent 16%), linear-gradient(135deg,#ff7aa6 0%, #ff4d86 60%, #ff2b6d 100%);
+      clip-path:path('M24 4c-5.3 0-9.6 4.3-10 9.6C13.6 8.3 9.3 4 4 4 1.8 4 0 5.8 0 8c0 6.8 11 13.8 24 28 13-14.2 24-21.2 24-28 0-2.2-1.8-4-4-4-5.3 0-9.6 4.3-10 9.6C33.6 8.3 29.3 4 24 4z');
+    }
+    @keyframes floatUp{
+      0%{transform:translateY(110vh) scale(0.7) rotate(0deg);opacity:0}
+      10%{opacity:1}
+      100%{transform:translateY(-30vh) scale(1) rotate(360deg);opacity:0}
+    }
+    .center{
+      position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;
+    }
+    .card{
+      width:100%;max-width:600px;background:var(--card);
+      border-radius:20px;padding:20px;box-shadow:var(--shadow);
+      backdrop-filter: blur(6px) saturate(120%);
+      border:1px solid rgba(255,75,130,0.06);
+      display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center;
+    }
+    .apology{
+      font-family: 'Playfair Display', serif;
+      font-size:18px;line-height:1.5;
+    }
+    .apology h1{
+      font-size:22px;margin-bottom:8px;color:#7b2540;
+    }
+    .right-panel{
+      display:flex;flex-direction:column;align-items:center;gap:12px;width:100%;
+    }
+    .big-heart{
+      width:140px;height:140px;border-radius:50%;display:grid;place-items:center;
+      background:conic-gradient(from 220deg, #ff4d86, #ff77aa 40%, #ffc1d9 80%);
+    }
+    .big-heart:before{
+      content:'❤';font-size:60px;
+    }
+    .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;width:100%;}
+    .btn{
+      border:none;padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer;flex:1;min-width:120px;
+      background:linear-gradient(180deg,var(--accent),#ff2b6d);color:white;
+    }
+    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(255,77,134,0.12)}
+    .note{font-size:12px;color:#6b4755;padding:0 10px}
+  </style>
+</head>
+<body>
+  <div class="hearts">
+    <i style="--s:28px; left:8%; top:110%; animation:floatUp 12s linear infinite; animation-delay:0s"></i>
+    <i style="--s:36px; left:18%; top:120%; animation:floatUp 14s linear infinite; animation-delay:1.2s"></i>
+    <i style="--s:22px; left:28%; top:115%; animation:floatUp 11s linear infinite; animation-delay:2.1s"></i>
+    <i style="--s:40px; left:72%; top:122%; animation:floatUp 15s linear infinite; animation-delay:2.7s"></i>
+  </div>
+  <main class="center">
+    <section class="card">
+      <div class="apology" id="apology">
+        <h1>Полина, прости меня, пожалуйста</h1>
+        <p>Полина, прости меня, пожалуйста. Я понимаю, что был неправ, и каждое мгновение без твоей улыбки кажется пустым. Моё сердце ноет от мысли, что мог тебя обидеть. Ты для меня — свет, тепло и вдохновение. Я готов исправить всё, лишь бы снова видеть твоё счастье. Пусть мои слова будут мостом к твоему прощению. Я люблю тебя, ценю каждую минуту рядом и надеюсь, что мы сможем начать заново, крепче, чем прежде.</p>
+      </div>
+      <aside class="right-panel">
+        <div class="big-heart" id="bigHeart"></div>
+        <div class="actions">
+          <button class="btn" id="btnPulse">Почувствовать</button>
+          <button class="btn ghost" id="btnCopy">Скопировать слова</button>
+        </div>
+        <div class="note">Нажми «Почувствовать», чтобы сердечко забилось сильнее.</div>
+      </aside>
+    </section>
+  </main>
+  <script>
+    const bigHeart = document.getElementById('bigHeart');
+    const btnPulse = document.getElementById('btnPulse');
+    const btnCopy = document.getElementById('btnCopy');
+    const apology = document.getElementById('apology').innerText.trim();
+    btnPulse.addEventListener('click', ()=>{
+      bigHeart.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.12)' },
+        { transform: 'scale(1)' }
+      ], { duration: 700 });
+    });
+    btnCopy.addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(apology);
+        btnCopy.textContent = 'Скопировано!';
+        setTimeout(()=>btnCopy.textContent = 'Скопировать слова', 2000);
+      }catch(e){
+        alert('Не удалось скопировать');
+      }
+    });
+  </script>
+</body>
+</html>
